@@ -5,7 +5,7 @@ import java.util.Random;
 import javax.swing.*;
 
 public class Blackjack {
-    ArrayList<Card> deck;
+    ArrayList<Card> deck = new ArrayList<Card>(53);;
     Random rand = new Random();
 
     // Constructor
@@ -13,12 +13,24 @@ public class Blackjack {
         startGame();
     }
     public void startGame() {
+        System.out.println("Welcome to Blackjack!");
         buildDeck();
+        System.out.println("Let's shuffle the deck!");
         shuffleDeck();
+        System.out.println("Let's start the game!");
+        ArrayList<Card> playerCards = new ArrayList<Card>();
+        ArrayList<Card> dealerCards = new ArrayList<Card>();
+        playerCards.add(deck.get(0));
+        playerCards.add(deck.get(1));
+        dealerCards.add(deck.get(2));
+        dealerCards.add(deck.get(3));
+        PlayerHand playerHand = new PlayerHand(playerCards);
+        DealerHand dealerHand = new DealerHand(dealerCards);
+        System.out.println("Your cards are: " + playerHand + " which totals to " + playerHand.handValue());
+        System.out.println("The dealer's cards are: " + dealerHand);
     }
 
     public void buildDeck() {
-        deck = new ArrayList<Card>();
         String[] values = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
         String[] suits = {"C", "D", "H", "S"};      
         for (String suit : suits) {
@@ -28,7 +40,6 @@ public class Blackjack {
             }
         }
         System.out.println("Deck built successfully!");
-        System.out.println(deck);
     }
     public void shuffleDeck() {
         for (int i = 0; i < deck.size(); i++) {
@@ -37,6 +48,5 @@ public class Blackjack {
             deck.set(RandIndex, deck.get(i));
         }
         System.out.println("Deck shuffled successfully!");
-        System.out.println(deck);
     }
 }
