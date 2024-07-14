@@ -2,10 +2,12 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 import javax.swing.*;
 
 public class Blackjack {
-    ArrayList<Card> deck = new ArrayList<Card>(53);;
+    ArrayList<Card> deck = new ArrayList<Card>(53);
+    Scanner input = new Scanner(System.in);
     Random rand = new Random();
 
     // Constructor
@@ -28,7 +30,17 @@ public class Blackjack {
         DealerHand dealerHand = new DealerHand(dealerCards);
         System.out.println("Your cards are: " + playerHand + " which totals to " + playerHand.handValue());
         System.out.println("The dealer's cards are: " + dealerHand);
+        System.out.println("Would you like to hit or stay? Enter 1 for hit or 2 for stay.");// TODO: handle exception
+        }
+
+
     }
+
+
+    private boolean isInputValid(int input) {
+        return input == 1 || input == 2;
+    }
+
 
     public void buildDeck() {
         String[] values = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
