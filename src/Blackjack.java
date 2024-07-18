@@ -31,14 +31,28 @@ public class Blackjack {
         System.out.println("Your cards are: " + playerHand + " which totals to " + playerHand.handValue());
         System.out.println("The dealer's cards are: " + dealerHand);
         System.out.println("Would you like to hit or stay? Enter 1 for hit or 2 for stay.");// TODO: handle exception
+        boolean isInputValid = true;
+        while (isInputValid) {
+            try {
+                int userChoice = input.nextInt();
+                if (isInputValid(userChoice)) {
+
+                }
+            } catch (Exception e) {
+                isInputValid = false;// TODO: handle exception
+            }
         }
-
-
+        
+        
+    
     }
 
-
-    private boolean isInputValid(int input) {
-        return input == 1 || input == 2;
+    private boolean isInputValid(int userChoice) throws Exception {
+        if (userChoice == 1 || userChoice == 2) {
+            return true;
+        } else {
+            throw new Exception("Invalid input. Please enter 1 for hit or 2 for stay.");
+        }
     }
 
 
